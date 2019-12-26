@@ -1,0 +1,160 @@
+
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:nil arch:headline
+#+options: author:nil broken-links:nil c:nil creator:nil
+#+options: d:(not "LOGBOOK") date:nil e:t email:nil f:t inline:t num:nil
+#+options: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+options: timestamp:nil title:nil toc:nil todo:nil |:nil
+#+title: Benjamin Dill - Home
+#+date: <2019-12-24 Tue>
+#+author: Benjamin Dill
+#+email: ben@benjamindill.com
+#+language: en
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 26.3 (Org mode 9.2.6)
+#+options: html-link-use-abs-url:nil html-postamble:auto
+#+options: html-preamble:t html-scripts:t html-style:t
+#+options: html5-fancy:nil tex:t
+#+html_doctype: xhtml-strict
+#+html_container: div
+#+description:
+#+keywords:
+#+html_link_home:
+#+html_link_up:
+#+html_mathjax:
+#+html_head:
+#+html_head_extra:
+#+subtitle:
+#+infojs_opt:
+#+creator: <a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.2.6)
+#+latex_header:
+
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+
+#+begin_export html
+<header id="header" ></header>
+#+end_export
+
+
+* Benjamin Dill's Personal Website
+
+Welcome to my website! Currently a work in progress. Here is a (rough) checklist of what I need to do: [3/5]
+- [X] [[Translate from org to static web]]
+- [X] [[Add styling]]
+- [X] [[Find a service to provide static hosting]]
+- [ ] Update DNS to use GitHub Pages hosting
+- [ ] Add header/other boilerplate functionality
+- [ ] Add org project to source control
+
+This site is built with [[https://emacs.org/][emacs]] and [[https://orgmode.org][org-mode]]
+
+* Translate from org to static web
+
+Tangle the code blocks in this file with =C-c C-v t=
+
+Add a line to =init.el= (or wherever you load your emacs config from) to load the file generated:
+
+#+begin_src emacs-lisp :tangle no
+(load-file "~/.emacs.d/web-config.el")
+#+end_src
+
+#+begin_src emacs-lisp :tangle ~/.emacs.d/web-config.el
+  (require 'ox-publish)
+  (setq org-publish-project-alist
+	'(("personal-site"
+	   :base-directory "~/git/web/com/benjamindill/"
+	   :base-extension "org"
+	   :publishing-directory "~/git/publish/personal/"
+	   :recursive t
+	   :publishing-function org-html-publish-to-html
+	   :headline-levels 4
+	   :auto-preamble t
+	   )
+	  ("personal-site-static"
+	   :base-directory "~/git/web/com/benjamindill/"
+	   :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+	   :publishing-directory "~/git/publish/personal/"
+	   :recursive t
+	   :publishing-function org-publish-attachment
+	   )
+	  ("personal" :components ("personal-site" "personal-site-static"))
+	   ))
+#+end_src
+
+* Add styling
+  Basic styling.
+  #+begin_src css :tangle css/stylesheet.css
+    header {
+	background-color: #59ffff;
+	background-position: center top;
+	background-repeat: no-repeat;
+	text-align: center;
+	width: 100%;
+	height: 4px;
+    }
+    body {
+	margin: 0 auto;
+	max-width: 50em;
+	font-family: "Helvetica", "Arial", sans-serif;
+	line-height: 1.5;
+	padding: 4em 1em;
+	color: #566b78;
+    }
+
+    h2 {
+	margin-top: 1em;
+	padding-top: 1em;
+    }
+
+    h1,
+    h2,
+    strong {
+	color: #333;
+    }
+    code,
+    pre {
+	background: #f5f7f9;
+	border-bottom: 1px solid #d8dee9;
+	color: #555;
+    }
+    pre {
+	border-left: 2px solid #69c;
+    }
+    header h1 {
+	color: white;
+	font-size: 2.5em;
+	font-weight: 300;
+    }
+    header a {
+	border: 1px solid #e81c4f;
+	border-radius: 290486px;
+	color: white;
+	font-size: 0.6em;
+	letter-spacing: 0.2em;
+	padding: 1em 2em;
+	text-transform: uppercase;
+	text-decoration: none;
+	transition: none 200ms ease-out;
+	transition-property: color, background;
+    }
+    header a:hover {
+	background: #e81c4f;
+	color: white;
+    }
+  #+end_src
+* Find a service to provide static hosting
+For this project I plan to use [[https://pages.github.com/][Github Pages]] to host my personal site, resumé, and blog.
+* Other various org export settings
+
+  #+begin_src emacs-lisp :tangle ~/.emacs.d/web-config.el
+  (setq org-html-validation-link nil)
+  (setq org-html-checkbox-type 'html)
+  #+end_src
+
+* Resources
+- [[https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html][worg tutuorials]]
+- [[https://thibaultmarin.github.io/blog/posts/2016-11-13-Personal_website_in_org.html#index_org][Marin Thibault - Personal website in org]]
+- [[https://jgthms.com/web-design-in-4-minutes/#share][Web Design in 4 minutes by Jeremy Thomas]]
+
+
+
