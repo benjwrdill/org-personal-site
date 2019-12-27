@@ -38,16 +38,22 @@
 
 * Benjamin Dill's Personal Website
 
-Welcome to my website! Currently a work in progress. Here is a (rough) checklist of what I need to do: [3/5]
+Welcome to my website! Currently a work in progress. Here is a (rough) checklist of what I need to do: [5/8]
 - [X] [[Translate from org to static web]]
 - [X] [[Add styling]]
 - [X] [[Find a service to provide static hosting]]
-- [ ] Update DNS to use GitHub Pages hosting
+- [X] Update DNS to use GitHub Pages hosting
 - [ ] Add header/other boilerplate functionality
-- [ ] Add org project to source control
+- [X] Add org project to source control
+- [ ] Make page responsive
+- [ ] Push button deploy
 
 This site is built with [[https://emacs.org/][emacs]] and [[https://orgmode.org][org-mode]]
 
+* TODO Push Button Deploy
+To export and deploy the site:
+1. Run =org-publish-current-project= (=C-c C-e P p=)
+2. Commit and push the changed files to GitHub
 * Translate from org to static web
 
 Tangle the code blocks in this file with =C-c C-v t=
