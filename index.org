@@ -149,7 +149,7 @@ Add a line to =init.el= (or wherever you load your emacs config from) to load th
     }
   #+end_src
 * Find a service to provide static hosting
-For this project I plan to use [[https://pages.github.com/][Github Pages]] to host my personal site, resumé, and blog.
+For this project I plan to use [[https://pages.github.com/][Github Pages]] to host my personal site, resume, and blog.
 * Other various org export settings
 
   #+begin_src emacs-lisp :tangle ~/.emacs.d/web-config.el
